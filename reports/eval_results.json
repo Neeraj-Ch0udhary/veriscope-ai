@@ -1,0 +1,435 @@
+{
+  "summary": {
+    "cases": 29,
+    "execution_success_pct": 100.0,
+    "tool_selection_pct": 100.0,
+    "calculation_correctness_pct": 100.0,
+    "grounding_pct": 89.7,
+    "first_pass_pct": 65.5,
+    "avg_seconds": 14.0,
+    "p95_seconds": 28.56
+  },
+  "cases": [
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "compare_periods"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 8.82,
+      "id": "period_drop",
+      "seconds": 10.13
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "group_aggregate"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 14.28,
+      "id": "top_category",
+      "seconds": 14.65
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": false,
+      "tools": [
+        "time_trend"
+      ],
+      "status": "partially_verified",
+      "error": "",
+      "retries": 1,
+      "llm_seconds": 28.93,
+      "id": "monthly_trend",
+      "seconds": 29.29
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "correlation"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 16.79,
+      "id": "correlation",
+      "seconds": 17.09
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "detect_outliers"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 15.24,
+      "id": "outliers",
+      "seconds": 15.52
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "ml_anomalies"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 15.83,
+      "id": "ml_anomalies",
+      "seconds": 17.77
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "group_aggregate"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 15.2,
+      "id": "category_share",
+      "seconds": 15.53
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "describe_column"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 18.34,
+      "id": "describe",
+      "seconds": 18.65
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [],
+      "status": "no_data",
+      "error": "",
+      "retries": 1,
+      "llm_seconds": 12.49,
+      "id": "unanswerable",
+      "seconds": 12.79
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "group_aggregate"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 8.41,
+      "id": "lowest_region",
+      "seconds": 8.75
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "describe_column"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 7.77,
+      "id": "avg_units",
+      "seconds": 8.11
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "time_trend"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 12.6,
+      "id": "quarterly",
+      "seconds": 12.93
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "compare_periods"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 11.95,
+      "id": "drop_driver",
+      "seconds": 12.32
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "detect_outliers"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 11.69,
+      "id": "price_outliers",
+      "seconds": 12.09
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "what_if"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 15.43,
+      "id": "what_if",
+      "seconds": 15.77
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": false,
+      "tools": [
+        "time_trend"
+      ],
+      "status": "partially_verified",
+      "error": "",
+      "retries": 1,
+      "llm_seconds": 28.22,
+      "id": "peak_month",
+      "seconds": 28.56
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [],
+      "status": "no_data",
+      "error": "",
+      "retries": 1,
+      "llm_seconds": 11.87,
+      "id": "missing_column",
+      "seconds": 12.33
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [],
+      "status": "no_data",
+      "error": "",
+      "retries": 1,
+      "llm_seconds": 12.01,
+      "id": "no_data_period",
+      "seconds": 12.48
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [],
+      "status": "no_data",
+      "error": "",
+      "retries": 1,
+      "llm_seconds": 1.97,
+      "id": "unanswerable_2",
+      "seconds": 2.31
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "group_aggregate"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 12.62,
+      "id": "lowest_region",
+      "seconds": 12.97
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "describe_column"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 11.01,
+      "id": "avg_units",
+      "seconds": 11.34
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "time_trend"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 8.73,
+      "id": "quarterly",
+      "seconds": 9.07
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "compare_periods"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 15.47,
+      "id": "drop_driver",
+      "seconds": 16.17
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "detect_outliers"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 5.69,
+      "id": "price_outliers",
+      "seconds": 6.04
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [
+        "what_if"
+      ],
+      "status": "verified",
+      "error": "",
+      "retries": 0,
+      "llm_seconds": 16.42,
+      "id": "what_if",
+      "seconds": 16.74
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": false,
+      "tools": [
+        "time_trend"
+      ],
+      "status": "partially_verified",
+      "error": "",
+      "retries": 1,
+      "llm_seconds": 27.16,
+      "id": "peak_month",
+      "seconds": 27.47
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [],
+      "status": "no_data",
+      "error": "",
+      "retries": 1,
+      "llm_seconds": 11.55,
+      "id": "missing_column",
+      "seconds": 11.89
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [],
+      "status": "no_data",
+      "error": "",
+      "retries": 1,
+      "llm_seconds": 2.3,
+      "id": "no_data_period",
+      "seconds": 2.6
+    },
+    {
+      "executed": true,
+      "tool_ok": true,
+      "correct": true,
+      "grounded": true,
+      "tools": [],
+      "status": "no_data",
+      "error": "",
+      "retries": 1,
+      "llm_seconds": 14.31,
+      "id": "unanswerable_2",
+      "seconds": 14.58
+    }
+  ]
+}
