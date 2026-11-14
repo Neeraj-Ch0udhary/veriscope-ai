@@ -1,0 +1,24 @@
+:root, [data-theme="dark"] {
+  --bg: #0b0f17; --surface: #121826; --surface-2: #1a2233; --border: #263045;
+  --text: #e6eaf2; --muted: #8b95a9; --accent: #4f8cff; --accent-text: #ffffff;
+  --good: #34d399; --bad: #f87171; --warn: #fbbf24;
+  --shadow: 0 4px 20px rgba(0,0,0,.35); color-scheme: dark;
+}
+[data-theme="light"] {
+  --bg: #f5f7fb; --surface: #ffffff; --surface-2: #eef2f8; --border: #d8dfeb;
+  --text: #121826; --muted: #5b667a; --accent: #2563eb; --accent-text: #ffffff;
+  --good: #059669; --bad: #dc2626; --warn: #b45309;
+  --shadow: 0 4px 20px rgba(20,30,60,.08); color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body { background: var(--bg); color: var(--text); font: 14px/1.5 Inter, system-ui, sans-serif;
+       transition: background .2s, color .2s; }
+.card { background: var(--surface); border: 1px solid var(--border);
+        border-radius: 12px; box-shadow: var(--shadow); }
+button { font: inherit; cursor: pointer; }
+.btn { background: var(--accent); color: var(--accent-text); border: 0;
+       border-radius: 8px; padding: 8px 14px; }
+.btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+input, textarea { background: var(--surface-2); color: var(--text);
+                  border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font: inherit; }

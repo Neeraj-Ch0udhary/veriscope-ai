@@ -1,55 +1,65 @@
 # VeriScope AI
 
-Agentic AI for automated data analysis and decision support, built with LangGraph.
-Upload a CSV or Excel file, ask questions in plain English, and get answers where **every number is computed by code and checked against evidence**.
+Agentic AI system for automated data analysis and decision support, built with LangGraph.
+Upload a CSV or Excel file, ask questions in plain English, and get a structured report in which
+**every number is computed by an approved tool and verified against its evidence**.
 
 ## Why it is different
-- The LLM never does the math. It plans which **approved tools** to call; Pandas/NumPy/scikit-learn compute the numbers.
-- A **claim checker** compares every number in the written answer with the tool outputs it cites. Unsupported or spelled-out numbers are rejected, and the model gets one chance to rewrite.
-- The agent cannot run arbitrary code or shell commands. Tool names, parameters and columns are validated before execution.
-- Full **execution trace** per run, and a reproducible **evaluation suite**.
+- **The LLM never computes numbers.** It plans which approved tools to call and writes the narrative. All figures come from deterministic Pandas/NumPy/scikit-learn tools.
+- **Claim verification.** A claim-checker node compares each number in the report with the tool results it cites. Unsupported findings are flagged, and the reporter retries with the exact problem as feedback.
+- **Honest refusals.** Questions the data cannot answer (a missing column, a period with no rows) return a clear "no data" report instead of an invented answer.
+- **Business context (RAG).** Rules and definitions attached to a dataset are retrieved and applied during interpretation, but are never used as evidence.
+- **Full traceability.** Each run saves its plan, tool parameters, formulas, row counts, assumptions and per-node timings.
 
 ## Architecture
+profiler -> retriever -> planner -> executor -> result_checker -> reporter -> claim_checker
+^____________________| ^__________|
+(retry on failed steps) (retry on unverified claims)
 
-~~~mermaid
-flowchart LR
-  Q[Question] --> PR[Profiler]
-  PR --> RT[Retriever - RAG]
-  RT --> PL[Planner - LLM]
-  PL --> EX[Executor - approved tools]
-  EX --> RC[Result checker]
-  RC -- failed steps --> PL
-  RC --> RP[Reporter - LLM]
-  RP --> CC[Claim checker]
-  CC -- unsupported numbers --> RP
-  CC --> OUT[Report + charts + evidence + trace]
-~~~
-
-## Approved tools
-describe_column, group_aggregate, time_trend, compare_periods, correlation, detect_outliers, ml_anomalies (Isolation Forest), what_if (scenario simulator).
-
-## Stack
-Python 3.12, FastAPI, LangGraph, Pandas, NumPy, scikit-learn, Plotly, ChromaDB (local embeddings), Groq LLM API, React + Vite, Pytest.
-
-## Run locally
-Backend:
-    cd backend
-    py -3.12 -m venv .venv
-    .\.venv\Scripts\Activate.ps1
-    pip install -r requirements.txt
-    (create backend/.env with GROQ_API_KEY=... and GROQ_MODEL=...)
-    uvicorn app.main:app --reload
-
-Frontend:
-    cd frontend
-    npm install
-    npm run dev
-
-Open http://localhost:5173. Sample data: `python backend/scripts/make_sample.py`.
+- **Backend:** FastAPI, LangGraph, Pandas, NumPy, scikit-learn (Isolation Forest), Plotly, Groq (llama-3.3-70b-versatile).
+- **Frontend:** React + Vite with a light/dark theme, themed Plotly charts, trace viewer, run history, Markdown/JSON/HTML export.
+- **Approved tools:** aggregation, column description, time trends, period comparison, outlier detection (IQR), ML anomaly detection, correlation, what-if scenarios, and more. The agent can call only registered tools with validated parameters.
 
 ## Evaluation
-`python -m evaluation.run_eval` (from `backend/`) runs predefined questions, with ground truth computed by independent plain pandas, and writes `reports/eval_report.md`. It measures execution success, tool selection, calculation correctness, evidence grounding, retries and response time.
-Results are on a synthetic dataset; see `reports/eval_report.md` for the latest numbers.
+19 questions on a synthetic sales dataset (5,913 rows), covering aggregation, trends, period comparison, outliers, anomalies, what-if scenarios, and unanswerable questions. Ground truth is recomputed with Pandas.
+
+| Metric | Result |
+|---|---|
+| Execution success | 100% |
+| Tool selection | 100% |
+| Calculation correctness | 100% |
+| Evidence grounding | 100% |
+| Answered without any retry | 89.5% |
+| Avg / median / P95 response time | 6.15 s / 5.28 s / 18.97 s |
+
+Notes: the LLM is non-deterministic, so single runs vary slightly. This is a regression benchmark tuned on the same cases, not a held-out test. Latency depends on the Groq free-tier rate limits.
+
+Reproduce: upload `datasets/sales_sample.csv` in the dashboard once, then `python -m evaluation.run_eval`.
+
+## Run locally
+```powershell
+# backend
+cd backend
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+# create backend/.env with: GROQ_API_KEY=your_key
+uvicorn app.main:app --reload --port 8000
+
+# frontend (second terminal)
+cd frontend
+npm install
+npm run dev
+```
+Run tests with `pytest -q` from `backend/` (28 tests).
+
+Docker: `docker-compose.yml` and a frontend Dockerfile are included but have not been tested yet.
 
 ## Limitations
-Descriptive analytics and simple scenarios only. No causal inference. The evaluation set is small and synthetic.
+- Single-table analysis; no joins across files.
+- Outlier tools flag unusual values for review; they do not prove errors.
+- What-if scenarios are proportional only and model no demand or price elasticity.
+
+## Team
+Minor Project-I, DBS Global University. Mentor: Abhinav Narain.
+Team: Neeraj, Charchit Jain, Karan Singh Rathore, Harsh Khendelwal.

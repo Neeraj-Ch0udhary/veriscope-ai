@@ -40,6 +40,10 @@ def _chart_for(ev):
         fig = go.Figure(go.Bar(x=["Baseline", "Scenario"], y=[d["baseline_total"], d["scenario_total"]],
                                marker_color=[BLUE, GREEN if d["change_amount"] >= 0 else RED]))
         return f"{vc}: baseline vs scenario", fig
+    if tool == "what_if":
+        fig = go.Figure(go.Bar(x=["Baseline", "Scenario"], y=[d["baseline_total"], d["scenario_total"]],
+                               marker_color=[BLUE, GREEN if d["change_amount"] >= 0 else RED]))
+        return f"{vc}: baseline vs scenario", fig
     if tool == "ml_anomalies" and d.get("examples"):
         ex = d["examples"]
         fig = go.Figure(go.Bar(x=[f"row {e['row_index']}" for e in ex],

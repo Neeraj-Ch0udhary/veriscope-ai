@@ -137,7 +137,10 @@ class AgentNodes:
         t = time.perf_counter()
         results = state.get("results", [])
         errors = [f"{r['id']} ({r['tool']}): {r['error']}" for r in results if not r["ok"]]
-        if not results:
+        plan = state.get("plan", {})
+        if not results and not plan.get("steps") and str(plan.get("reasoning", "")).strip():
+            fb = ""  # planner deliberately declined (not answerable with this data): do not retry
+        elif not results:
             fb = "The plan had no executable steps. Produce 1 to 5 valid tool steps."
         elif errors:
             fb = "These steps failed, fix them: " + "; ".join(errors)
@@ -203,7 +206,12 @@ class AgentNodes:
                                   f"({sorted(set(w.lower() for w in words))}); write numbers as digits.")
                 if bad:
                     f["unverified_numbers"] = bad
-                    issues.append(f"Finding {i} contains numbers not found in cited results: {bad}.")
+                    ctx_pool = [n for h in state.get("context_hits", []) for n in numbers_in_text(h.get("text", ""))]
+                    from_ctx = [v for v in bad if _supported(v, ctx_pool)]
+                    if from_ctx:
+                        issues.append(f"Finding {i} uses {from_ctx}, which comes only from the business context. Remove the number and describe the rule in words instead.")
+                    else:
+                        issues.append(f"Finding {i} contains numbers not found in cited results: {bad}.")
             findings.append(f)
 
         all_pool: list[float] = []

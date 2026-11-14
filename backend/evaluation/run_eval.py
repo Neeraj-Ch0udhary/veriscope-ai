@@ -15,7 +15,7 @@ from app.tools.base import coerce_types
 from evaluation.cases import CASES
 
 REPORT_DIR = Path(__file__).resolve().parents[2] / "reports"
-PAUSE_SECONDS = 4
+PAUSE_SECONDS = 10
 
 
 def find_dataset(arg):
@@ -72,10 +72,6 @@ def main():
             out = run_agent(graph, dataset_id, case["question"])
             res = evaluate(case, out, df)
             res["error"] = ""
-            nodes = [t["node"] for t in out["trace"]]
-            res["retries"] = max(0, nodes.count("planner") - 1) + max(0, nodes.count("reporter") - 1)
-            res["llm_seconds"] = round(sum(t["ms"] for t in out["trace"]
-                                           if t["node"] in ("planner", "reporter")) / 1000, 2)
             nodes = [t["node"] for t in out["trace"]]
             res["retries"] = max(0, nodes.count("planner") - 1) + max(0, nodes.count("reporter") - 1)
             res["llm_seconds"] = round(sum(t["ms"] for t in out["trace"]

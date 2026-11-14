@@ -1,13 +1,13 @@
 {
   "summary": {
-    "cases": 29,
+    "cases": 19,
     "execution_success_pct": 100.0,
     "tool_selection_pct": 100.0,
     "calculation_correctness_pct": 100.0,
-    "grounding_pct": 89.7,
-    "first_pass_pct": 65.5,
-    "avg_seconds": 14.0,
-    "p95_seconds": 28.56
+    "grounding_pct": 100.0,
+    "first_pass_pct": 89.5,
+    "avg_seconds": 6.15,
+    "p95_seconds": 18.97
   },
   "cases": [
     {
@@ -21,9 +21,9 @@
       "status": "verified",
       "error": "",
       "retries": 0,
-      "llm_seconds": 8.82,
+      "llm_seconds": 4.3,
       "id": "period_drop",
-      "seconds": 10.13
+      "seconds": 5.28
     },
     {
       "executed": true,
@@ -36,24 +36,24 @@
       "status": "verified",
       "error": "",
       "retries": 0,
-      "llm_seconds": 14.28,
+      "llm_seconds": 2.48,
       "id": "top_category",
-      "seconds": 14.65
+      "seconds": 2.74
     },
     {
       "executed": true,
       "tool_ok": true,
       "correct": true,
-      "grounded": false,
+      "grounded": true,
       "tools": [
         "time_trend"
       ],
-      "status": "partially_verified",
+      "status": "verified",
       "error": "",
-      "retries": 1,
-      "llm_seconds": 28.93,
+      "retries": 0,
+      "llm_seconds": 2.74,
       "id": "monthly_trend",
-      "seconds": 29.29
+      "seconds": 2.98
     },
     {
       "executed": true,
@@ -66,9 +66,9 @@
       "status": "verified",
       "error": "",
       "retries": 0,
-      "llm_seconds": 16.79,
+      "llm_seconds": 2.22,
       "id": "correlation",
-      "seconds": 17.09
+      "seconds": 2.47
     },
     {
       "executed": true,
@@ -81,9 +81,9 @@
       "status": "verified",
       "error": "",
       "retries": 0,
-      "llm_seconds": 15.24,
+      "llm_seconds": 2.09,
       "id": "outliers",
-      "seconds": 15.52
+      "seconds": 2.3
     },
     {
       "executed": true,
@@ -95,10 +95,10 @@
       ],
       "status": "verified",
       "error": "",
-      "retries": 0,
-      "llm_seconds": 15.83,
+      "retries": 1,
+      "llm_seconds": 17.45,
       "id": "ml_anomalies",
-      "seconds": 17.77
+      "seconds": 18.97
     },
     {
       "executed": true,
@@ -111,9 +111,9 @@
       "status": "verified",
       "error": "",
       "retries": 0,
-      "llm_seconds": 15.2,
+      "llm_seconds": 10.23,
       "id": "category_share",
-      "seconds": 15.53
+      "seconds": 10.46
     },
     {
       "executed": true,
@@ -126,9 +126,9 @@
       "status": "verified",
       "error": "",
       "retries": 0,
-      "llm_seconds": 18.34,
+      "llm_seconds": 6.27,
       "id": "describe",
-      "seconds": 18.65
+      "seconds": 6.49
     },
     {
       "executed": true,
@@ -138,10 +138,10 @@
       "tools": [],
       "status": "no_data",
       "error": "",
-      "retries": 1,
-      "llm_seconds": 12.49,
+      "retries": 0,
+      "llm_seconds": 2.7,
       "id": "unanswerable",
-      "seconds": 12.79
+      "seconds": 2.94
     },
     {
       "executed": true,
@@ -153,10 +153,10 @@
       ],
       "status": "verified",
       "error": "",
-      "retries": 0,
-      "llm_seconds": 8.41,
+      "retries": 1,
+      "llm_seconds": 7.37,
       "id": "lowest_region",
-      "seconds": 8.75
+      "seconds": 7.6
     },
     {
       "executed": true,
@@ -169,9 +169,9 @@
       "status": "verified",
       "error": "",
       "retries": 0,
-      "llm_seconds": 7.77,
+      "llm_seconds": 5.55,
       "id": "avg_units",
-      "seconds": 8.11
+      "seconds": 5.77
     },
     {
       "executed": true,
@@ -184,9 +184,9 @@
       "status": "verified",
       "error": "",
       "retries": 0,
-      "llm_seconds": 12.6,
+      "llm_seconds": 4.21,
       "id": "quarterly",
-      "seconds": 12.93
+      "seconds": 4.49
     },
     {
       "executed": true,
@@ -199,9 +199,9 @@
       "status": "verified",
       "error": "",
       "retries": 0,
-      "llm_seconds": 11.95,
+      "llm_seconds": 10.05,
       "id": "drop_driver",
-      "seconds": 12.32
+      "seconds": 10.31
     },
     {
       "executed": true,
@@ -214,9 +214,9 @@
       "status": "verified",
       "error": "",
       "retries": 0,
-      "llm_seconds": 11.69,
+      "llm_seconds": 8.55,
       "id": "price_outliers",
-      "seconds": 12.09
+      "seconds": 8.79
     },
     {
       "executed": true,
@@ -229,24 +229,24 @@
       "status": "verified",
       "error": "",
       "retries": 0,
-      "llm_seconds": 15.43,
+      "llm_seconds": 9.72,
       "id": "what_if",
-      "seconds": 15.77
+      "seconds": 10.01
     },
     {
       "executed": true,
       "tool_ok": true,
       "correct": true,
-      "grounded": false,
+      "grounded": true,
       "tools": [
         "time_trend"
       ],
-      "status": "partially_verified",
+      "status": "verified",
       "error": "",
-      "retries": 1,
-      "llm_seconds": 28.22,
+      "retries": 0,
+      "llm_seconds": 12.02,
       "id": "peak_month",
-      "seconds": 28.56
+      "seconds": 12.25
     },
     {
       "executed": true,
@@ -256,10 +256,10 @@
       "tools": [],
       "status": "no_data",
       "error": "",
-      "retries": 1,
-      "llm_seconds": 11.87,
+      "retries": 0,
+      "llm_seconds": 0.67,
       "id": "missing_column",
-      "seconds": 12.33
+      "seconds": 1.1
     },
     {
       "executed": true,
@@ -269,10 +269,10 @@
       "tools": [],
       "status": "no_data",
       "error": "",
-      "retries": 1,
-      "llm_seconds": 12.01,
+      "retries": 0,
+      "llm_seconds": 0.55,
       "id": "no_data_period",
-      "seconds": 12.48
+      "seconds": 0.91
     },
     {
       "executed": true,
@@ -282,154 +282,10 @@
       "tools": [],
       "status": "no_data",
       "error": "",
-      "retries": 1,
-      "llm_seconds": 1.97,
+      "retries": 0,
+      "llm_seconds": 0.65,
       "id": "unanswerable_2",
-      "seconds": 2.31
-    },
-    {
-      "executed": true,
-      "tool_ok": true,
-      "correct": true,
-      "grounded": true,
-      "tools": [
-        "group_aggregate"
-      ],
-      "status": "verified",
-      "error": "",
-      "retries": 0,
-      "llm_seconds": 12.62,
-      "id": "lowest_region",
-      "seconds": 12.97
-    },
-    {
-      "executed": true,
-      "tool_ok": true,
-      "correct": true,
-      "grounded": true,
-      "tools": [
-        "describe_column"
-      ],
-      "status": "verified",
-      "error": "",
-      "retries": 0,
-      "llm_seconds": 11.01,
-      "id": "avg_units",
-      "seconds": 11.34
-    },
-    {
-      "executed": true,
-      "tool_ok": true,
-      "correct": true,
-      "grounded": true,
-      "tools": [
-        "time_trend"
-      ],
-      "status": "verified",
-      "error": "",
-      "retries": 0,
-      "llm_seconds": 8.73,
-      "id": "quarterly",
-      "seconds": 9.07
-    },
-    {
-      "executed": true,
-      "tool_ok": true,
-      "correct": true,
-      "grounded": true,
-      "tools": [
-        "compare_periods"
-      ],
-      "status": "verified",
-      "error": "",
-      "retries": 0,
-      "llm_seconds": 15.47,
-      "id": "drop_driver",
-      "seconds": 16.17
-    },
-    {
-      "executed": true,
-      "tool_ok": true,
-      "correct": true,
-      "grounded": true,
-      "tools": [
-        "detect_outliers"
-      ],
-      "status": "verified",
-      "error": "",
-      "retries": 0,
-      "llm_seconds": 5.69,
-      "id": "price_outliers",
-      "seconds": 6.04
-    },
-    {
-      "executed": true,
-      "tool_ok": true,
-      "correct": true,
-      "grounded": true,
-      "tools": [
-        "what_if"
-      ],
-      "status": "verified",
-      "error": "",
-      "retries": 0,
-      "llm_seconds": 16.42,
-      "id": "what_if",
-      "seconds": 16.74
-    },
-    {
-      "executed": true,
-      "tool_ok": true,
-      "correct": true,
-      "grounded": false,
-      "tools": [
-        "time_trend"
-      ],
-      "status": "partially_verified",
-      "error": "",
-      "retries": 1,
-      "llm_seconds": 27.16,
-      "id": "peak_month",
-      "seconds": 27.47
-    },
-    {
-      "executed": true,
-      "tool_ok": true,
-      "correct": true,
-      "grounded": true,
-      "tools": [],
-      "status": "no_data",
-      "error": "",
-      "retries": 1,
-      "llm_seconds": 11.55,
-      "id": "missing_column",
-      "seconds": 11.89
-    },
-    {
-      "executed": true,
-      "tool_ok": true,
-      "correct": true,
-      "grounded": true,
-      "tools": [],
-      "status": "no_data",
-      "error": "",
-      "retries": 1,
-      "llm_seconds": 2.3,
-      "id": "no_data_period",
-      "seconds": 2.6
-    },
-    {
-      "executed": true,
-      "tool_ok": true,
-      "correct": true,
-      "grounded": true,
-      "tools": [],
-      "status": "no_data",
-      "error": "",
-      "retries": 1,
-      "llm_seconds": 14.31,
-      "id": "unanswerable_2",
-      "seconds": 14.58
+      "seconds": 0.9
     }
   ]
 }

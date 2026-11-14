@@ -74,10 +74,6 @@ CASES = [
      "tools": [], "truth": None, "refusal": PROFIT_REFUSAL},
 ]
 
-from evaluation.cases_extra import EXTRA  # noqa: E402
-
-CASES = CASES + EXTRA
-
 
 from evaluation.cases_extra import EXTRA  # noqa: E402
 
