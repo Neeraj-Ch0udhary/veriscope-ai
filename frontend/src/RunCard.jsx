@@ -34,7 +34,7 @@ function Trace({ trace }) {
       <p className="muted">
         {(total / 1000).toFixed(1)} s total &middot; {trace.length} steps &middot; {retries} retries
       </p>
-      <p className="hint">Blue: LLM calls &middot; Green: tool execution &middot; Grey: checks</p>
+      <p className="hint">Cyan: LLM calls &middot; Green: tool execution &middot; Grey: checks</p>
       {trace.map((t, i) => {
         const { node, ms, ...rest } = t;
         return (

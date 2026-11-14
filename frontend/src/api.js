@@ -24,4 +24,13 @@ export const api = {
     }).then(j),
   runs: () => fetch("/api/runs").then(j),
   run: (id) => fetch(`/api/runs/${id}`).then(j),
+  contextList: (id) => fetch(`/api/datasets/${id}/context`).then(j),
+  contextUpload: (id, file) => {
+    const f = new FormData();
+    f.append("file", file);
+    return fetch(`/api/datasets/${id}/context`, { method: "POST", body: f }).then(j);
+  },
+  contextClear: (id) => fetch(`/api/datasets/${id}/context`, { method: "DELETE" }).then(j),
+  contextSearch: (id, q) =>
+    fetch(`/api/datasets/${id}/context/search?q=${encodeURIComponent(q)}`).then(j),
 };

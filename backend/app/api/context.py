@@ -36,3 +36,10 @@ def list_context(dataset_id: str):
 def search_context(dataset_id: str, q: str = Query(min_length=2, max_length=300)):
     svc.get_meta(dataset_id)
     return {"query": q, "hits": store.query(dataset_id, q)}
+
+
+@router.delete("/{dataset_id}/context")
+def clear_context(dataset_id: str):
+    svc.get_meta(dataset_id)
+    store.clear_context(dataset_id)
+    return {"dataset_id": dataset_id, "chunks": 0}

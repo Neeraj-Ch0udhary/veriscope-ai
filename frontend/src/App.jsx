@@ -3,6 +3,7 @@ import { api } from "./api";
 import ThemeToggle from "./ThemeToggle";
 import DatasetPanel from "./DatasetPanel";
 import RunCard from "./RunCard";
+import ContextPanel from "./ContextPanel";
 import { suggest } from "./suggest";
 
 const DOT = { verified: "good", partially_verified: "warn", no_data: "bad", tool_summaries_only: "bad" };
@@ -213,6 +214,7 @@ export default function App() {
           ) : (
             <>
               <DatasetPanel meta={meta} profile={profile} preview={preview} onMore={showMore} moreLoading={moreLoading} />
+              <ContextPanel datasetId={activeId} />
               {thread.length === 0 && ideas.length > 0 && (
                 <div className="card pad fade">
                   <div className="label">Try asking</div>

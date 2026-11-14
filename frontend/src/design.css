@@ -94,3 +94,14 @@ input, textarea { border-radius: 8px; }
 .kpi .v { display: flex; align-items: center; min-height: 32px; }
 .kpi .v.long { font-size: 15px; white-space: nowrap; letter-spacing: -.01em; }
 .tbl thead th { background: color-mix(in srgb, var(--surface) 92%, transparent); }
+
+/* ---- trace colours ---- */
+.bar div.llm { background: var(--accent-2); }
+.bar div.tool { background: var(--accent); }
+.bar div.chk { background: var(--muted); opacity: .7; }
+
+/* ---- business context panel ---- */
+textarea.ctx-text { width: 100%; min-height: 96px; resize: vertical; }
+.ctx-list { display: flex; flex-direction: column; gap: 6px; max-height: 240px; overflow: auto; }
+.ctx-item { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; font-size: 13px; padding: 8px 10px; border-radius: 8px; background: color-mix(in srgb, var(--surface-2) 60%, transparent); border: 1px solid var(--glass-border); }
+.alert.good { color: var(--good); }

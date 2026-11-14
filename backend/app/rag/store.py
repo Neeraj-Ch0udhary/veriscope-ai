@@ -82,3 +82,10 @@ def query(dataset_id: str, text: str, k: int = MAX_HITS) -> list[dict]:
         if dist <= MAX_DISTANCE:
             out.append({"id": cid, "text": doc, "distance": round(float(dist), 3)})
     return out
+
+
+def clear_context(dataset_id: str) -> None:
+    try:
+        _get_client().delete_collection(f"ds_{dataset_id}")
+    except Exception:
+        pass
