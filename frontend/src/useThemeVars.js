@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 
 function read() {
-  const s = getComputedStyle(document.documentElement);
+  const root = document.documentElement;
+  const s = getComputedStyle(root);
   const g = (n) => s.getPropertyValue(n).trim();
-  return { text: g("--text"), muted: g("--muted"), border: g("--border") };
+  return {
+    theme: root.dataset.theme || "dark",
+    text: g("--text"),
+    muted: g("--muted"),
+    border: g("--border"),
+    surface: g("--surface"),
+  };
 }
 
 export default function useThemeVars() {
