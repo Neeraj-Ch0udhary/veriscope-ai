@@ -53,7 +53,7 @@ export default function DatasetPanel({ meta, profile, preview, onMore, moreLoadi
         <>
           <div className="kpis">
             {kpis.map(([l, v]) => (
-              <div key={l} className="kpi"><div className="l">{l}</div><div className="v">{v}</div></div>
+              <div key={l} className="kpi"><div className="l">{l}</div><div className={"v" + (String(v).length > 14 ? " long" : "")}>{v}</div></div>
             ))}
           </div>
 

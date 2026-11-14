@@ -90,3 +90,7 @@ input, textarea { border-radius: 8px; }
   .hint { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+/* ---- polish ---- */
+.kpi .v { display: flex; align-items: center; min-height: 32px; }
+.kpi .v.long { font-size: 15px; white-space: nowrap; letter-spacing: -.01em; }
+.tbl thead th { background: color-mix(in srgb, var(--surface) 92%, transparent); }
