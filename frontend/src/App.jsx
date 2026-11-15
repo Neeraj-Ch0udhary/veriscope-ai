@@ -5,6 +5,7 @@ import DatasetPanel from "./DatasetPanel";
 import RunCard from "./RunCard";
 import ContextPanel from "./ContextPanel";
 import Pinboard from "./Pinboard";
+import SavedPanel from "./SavedPanel";
 import { usePins } from "./pins";
 import { suggest } from "./suggest";
 
@@ -179,6 +180,8 @@ export default function App() {
             </button>
           ))}
         </div>
+
+        <div className="sec"><SavedPanel busy={busy} disabled={!activeId} onRun={(q) => { setView("chat"); ask(q); }} /></div>
 
         <div className="sec grow scroll">
           <div className="label">History</div>

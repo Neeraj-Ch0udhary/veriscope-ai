@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ChartCard from "./ChartCard";
+import { useSaved } from "./saved";
 import FindingText from "./FindingText";
 import { Highlight } from "./format";
 import { download, toMarkdown } from "./exporters";
@@ -58,6 +59,7 @@ export default function RunCard({ item, followUps = [], onAsk, busy }) {
   const [focus, setFocus] = useState(null);
   const [copied, setCopied] = useState(false);
   const runId = item.run?.run_id;
+  const saved = useSaved();
 
   useEffect(() => {
     if (tab !== "evidence" || !focus) return;
@@ -113,6 +115,7 @@ export default function RunCard({ item, followUps = [], onAsk, busy }) {
         <span className={"badge " + tone}>{label}</span>
         <span className="muted small">run {run.run_id}</span>
         <div className="grow" />
+        <button className={"btn ghost sm" + (saved.has(run.question) ? " on" : "")} onClick={() => { const r = saved.toggle({ question: run.question, dataset_id: run.dataset_id }); if (r && r.error) window.alert(r.error); }}>{saved.has(run.question) ? "\u2605 Saved" : "\u2606 Save"}</button>
         <button className="btn ghost sm" onClick={copy}>{copied ? "Copied" : "Copy"}</button>
         <button className="btn ghost sm" onClick={() => download(`veriscope-${run.run_id}.md`, toMarkdown(run), "text/markdown")}>Markdown</button>
         <button className="btn ghost sm" onClick={() => download(`veriscope-${run.run_id}.json`, JSON.stringify(run, null, 2), "application/json")}>JSON</button>

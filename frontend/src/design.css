@@ -135,3 +135,10 @@ textarea.ctx-text { width: 100%; min-height: 96px; resize: vertical; }
 .ctools { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 10px 0; }
 .tbl td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .seg button { cursor: pointer; }
+
+/* ---- step 4: saved questions ---- */
+.srow { display: flex; align-items: center; gap: 6px; padding: 4px 6px; border-radius: 8px; }
+.srow:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.srow .sq { flex: 1; min-width: 0; font-size: 13px; }
+.lnkbtn:disabled { opacity: .4; cursor: not-allowed; }
+.lnkbtn.muted { color: var(--muted); }
