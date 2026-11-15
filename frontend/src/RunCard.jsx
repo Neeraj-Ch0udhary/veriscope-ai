@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import Chart from "./Chart";
-import { Highlight } from "./format";
+import ChartCard from "./ChartCard";
 import FindingText from "./FindingText";
-import { usePins } from "./pins";
+import { Highlight } from "./format";
 import { download, toMarkdown } from "./exporters";
 
 const STATUS = {
@@ -57,22 +56,13 @@ function Trace({ trace }) {
 export default function RunCard({ item, followUps = [], onAsk, busy }) {
   const [tab, setTab] = useState("report");
   const [focus, setFocus] = useState(null);
-  const [zoom, setZoom] = useState(null);
   const [copied, setCopied] = useState(false);
   const runId = item.run?.run_id;
-  const pins = usePins();
 
   useEffect(() => {
     if (tab !== "evidence" || !focus) return;
     document.getElementById(`ev-${runId}-${focus}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
   }, [tab, focus, runId]);
-
-  useEffect(() => {
-    if (!zoom) return;
-    const h = (e) => e.key === "Escape" && setZoom(null);
-    window.addEventListener("keydown", h);
-    return () => window.removeEventListener("keydown", h);
-  }, [zoom]);
 
   if (item.pending)
     return (
@@ -143,7 +133,8 @@ export default function RunCard({ item, followUps = [], onAsk, busy }) {
 
       {tab === "report" && (
         <div>
-          <h3 className="headline"><Highlight text={rep.headline} /></h3><p className="hint" style={{ margin: "0 0 8px" }}>Hover or tap a highlighted number to see where it came from.</p>
+          <h3 className="headline"><Highlight text={rep.headline} /></h3>
+          <p className="hint" style={{ margin: "0 0 8px" }}>Hover or tap a highlighted number to see where it came from.</p>
           {findings.map((f, i) => (
             <div key={i} className={"finding " + (f.verified ? "ok" : "unv")}>
               <span className="mark">{f.verified ? "\u2713" : "!"}</span>
@@ -187,18 +178,7 @@ export default function RunCard({ item, followUps = [], onAsk, busy }) {
       {tab === "charts" && (
         charts.length === 0 ? <p className="muted">No charts for this answer.</p> :
         <div className="grid2">
-          {charts.map((c) => (
-            <div key={c.evidence_id} className="subcard">
-              <div className="row">
-                <span className="small muted">{c.title}</span>
-                <span className="chip">{c.evidence_id}</span>
-                <div className="grow" />
-                <button className={"btn ghost sm" + (pins.has(run.run_id + ":" + c.evidence_id) ? " on" : "")} onClick={() => { const r = pins.toggle({ id: run.run_id + ":" + c.evidence_id, run_id: run.run_id, dataset_id: run.dataset_id, evidence_id: c.evidence_id, title: c.title, question: run.question, status: ver.status || "", figure: c.figure }); if (r && r.error) window.alert(r.error); }}>{pins.has(run.run_id + ":" + c.evidence_id) ? "Pinned" : "Pin"}</button>
-                <button className="btn ghost sm" onClick={() => setZoom(c)}>Expand</button>
-              </div>
-              <Chart figure={c.figure} />
-            </div>
-          ))}
+          {charts.map((c) => <ChartCard key={c.evidence_id} chart={c} run={run} />)}
         </div>
       )}
 
@@ -226,19 +206,6 @@ export default function RunCard({ item, followUps = [], onAsk, busy }) {
       })}
 
       {tab === "trace" && <Trace trace={trace} />}
-
-      {zoom && (
-        <div className="modal" onClick={() => setZoom(null)}>
-          <div className="modal-card card" onClick={(e) => e.stopPropagation()}>
-            <div className="row">
-              <b>{zoom.title}</b>
-              <div className="grow" />
-              <button className="btn ghost sm" onClick={() => setZoom(null)}>Close</button>
-            </div>
-            <Chart figure={zoom.figure} height={520} />
-          </div>
-        </div>
-      )}
     </div>
   );
 }

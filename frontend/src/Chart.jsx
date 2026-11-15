@@ -44,7 +44,7 @@ function semantic(c, theme, way) {
   return c;
 }
 
-export default function Chart({ figure, height = 340 }) {
+export default function Chart({ figure, height = 340, onReady }) {
   const v = useThemeVars();
   const theme = v.theme === "light" ? "light" : "dark";
   const way = WAY[theme];
@@ -108,6 +108,8 @@ export default function Chart({ figure, height = 340 }) {
       config={{ responsive: true, displaylogo: false, modeBarButtonsToRemove: ["lasso2d", "select2d"] }}
       style={{ width: "100%" }}
       useResizeHandler
+      onInitialized={(f, gd) => onReady && onReady(gd)}
+      onUpdate={(f, gd) => onReady && onReady(gd)}
     />
   );
 }
