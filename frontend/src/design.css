@@ -105,3 +105,28 @@ textarea.ctx-text { width: 100%; min-height: 96px; resize: vertical; }
 .ctx-list { display: flex; flex-direction: column; gap: 6px; max-height: 240px; overflow: auto; }
 .ctx-item { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; font-size: 13px; padding: 8px 10px; border-radius: 8px; background: color-mix(in srgb, var(--surface-2) 60%, transparent); border: 1px solid var(--glass-border); }
 .alert.good { color: var(--good); }
+
+/* ---- step 1: verification badges ---- */
+.nbwrap { position: relative; display: inline-block; }
+.nb { font: inherit; font-weight: 600; font-variant-numeric: tabular-nums; cursor: pointer; border: 0; border-bottom: 1.5px dotted currentColor; border-radius: 5px; padding: 0 6px; }
+.nb.ok { color: var(--accent-ink); background: color-mix(in srgb, var(--accent) 13%, transparent); }
+.nb.bad { color: var(--warn); background: color-mix(in srgb, var(--warn) 14%, transparent); }
+.nb .mk { font-size: 10px; margin-left: 3px; vertical-align: 1px; }
+.pop { position: absolute; left: 0; top: calc(100% + 6px); z-index: 30; width: 320px; max-width: 80vw; text-align: left; font-size: 12.5px; font-weight: 400; line-height: 1.55; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow); padding: 10px 12px; }
+.pop.bad { border-color: var(--warn); }
+.pop > * { display: block; }
+.pop .t { font-weight: 600; margin-bottom: 2px; }
+.pop .t.ok { color: var(--good); } .pop .t.bad { color: var(--warn); }
+.pop .r { color: var(--muted); }
+.pop .lnk { background: none; border: 0; padding: 0; margin-top: 6px; color: var(--accent-ink); cursor: pointer; }
+
+/* ---- step 2: pinboard ---- */
+.askbar[hidden] { display: none; }
+.btn.ghost.on { border-color: var(--accent); color: var(--accent-ink); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.board { display: flex; flex-direction: column; gap: 14px; }
+.board-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 14px; }
+.tile { min-width: 0; }
+.tile .tt { font-weight: 600; }
+.tile .tq { font-size: 12px; color: var(--muted); margin: 2px 0 8px; }
+.tile .foot { display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 12px; flex-wrap: wrap; }
+.lnkbtn { background: none; border: 0; padding: 0 4px; color: var(--accent-ink); cursor: pointer; }

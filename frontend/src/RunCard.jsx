@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Chart from "./Chart";
 import { Highlight } from "./format";
+import FindingText from "./FindingText";
+import { usePins } from "./pins";
 import { download, toMarkdown } from "./exporters";
 
 const STATUS = {
@@ -58,6 +60,7 @@ export default function RunCard({ item, followUps = [], onAsk, busy }) {
   const [zoom, setZoom] = useState(null);
   const [copied, setCopied] = useState(false);
   const runId = item.run?.run_id;
+  const pins = usePins();
 
   useEffect(() => {
     if (tab !== "evidence" || !focus) return;
@@ -140,12 +143,12 @@ export default function RunCard({ item, followUps = [], onAsk, busy }) {
 
       {tab === "report" && (
         <div>
-          <h3 className="headline"><Highlight text={rep.headline} /></h3>
+          <h3 className="headline"><Highlight text={rep.headline} /></h3><p className="hint" style={{ margin: "0 0 8px" }}>Hover or tap a highlighted number to see where it came from.</p>
           {findings.map((f, i) => (
             <div key={i} className={"finding " + (f.verified ? "ok" : "unv")}>
               <span className="mark">{f.verified ? "\u2713" : "!"}</span>
               <div>
-                <div><Highlight text={f.text} /></div>
+                <div><FindingText finding={f} evidence={evidence} onOpen={(id) => { setFocus(id); setTab("evidence"); }} /></div>
                 <div className="chips">
                   {(f.evidence_ids || []).map((id) => (
                     <button key={id} className="chip btnchip" title="Show evidence" onClick={() => { setFocus(id); setTab("evidence"); }}>{id}</button>
@@ -190,6 +193,7 @@ export default function RunCard({ item, followUps = [], onAsk, busy }) {
                 <span className="small muted">{c.title}</span>
                 <span className="chip">{c.evidence_id}</span>
                 <div className="grow" />
+                <button className={"btn ghost sm" + (pins.has(run.run_id + ":" + c.evidence_id) ? " on" : "")} onClick={() => { const r = pins.toggle({ id: run.run_id + ":" + c.evidence_id, run_id: run.run_id, dataset_id: run.dataset_id, evidence_id: c.evidence_id, title: c.title, question: run.question, status: ver.status || "", figure: c.figure }); if (r && r.error) window.alert(r.error); }}>{pins.has(run.run_id + ":" + c.evidence_id) ? "Pinned" : "Pin"}</button>
                 <button className="btn ghost sm" onClick={() => setZoom(c)}>Expand</button>
               </div>
               <Chart figure={c.figure} />

@@ -4,6 +4,8 @@ import ThemeToggle from "./ThemeToggle";
 import DatasetPanel from "./DatasetPanel";
 import RunCard from "./RunCard";
 import ContextPanel from "./ContextPanel";
+import Pinboard from "./Pinboard";
+import { usePins } from "./pins";
 import { suggest } from "./suggest";
 
 const DOT = { verified: "good", partially_verified: "warn", no_data: "bad", tool_summaries_only: "bad" };
@@ -28,6 +30,9 @@ export default function App() {
   const [busy, setBusy] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [toast, setToast] = useState("");
+  const [view, setView] = useState("chat");
+  const pins = usePins();
+  useEffect(() => { setView("chat"); }, [activeId, thread.length]);
   const [sideOpen, setSideOpen] = useState(() => window.innerWidth > 860);
   const fileRef = useRef(null);
   const endRef = useRef(null);
@@ -195,12 +200,13 @@ export default function App() {
           <span className="title">{meta ? meta.filename : "VeriScope AI"}</span>
           <div className="grow" />
           <span className="hint">Press <kbd>/</kbd> to ask</span>
+          <button className={"btn ghost sm" + (view === "board" ? " on" : "")} onClick={() => setView((v) => (v === "board" ? "chat" : "board"))}>{"Pinboard "}<span className="pill"><b>{pins.items.length}</b></span></button>
           {thread.length > 0 && <button className="btn ghost sm" onClick={() => setThread([])}>Clear chat</button>}
           <ThemeToggle />
         </header>
 
         <div className="feed">
-          {!activeId ? (
+          {view === "board" ? (<Pinboard onOpenRun={(id) => { setView("chat"); openRun(id); }} />) : !activeId ? (
             <div className="empty card pad fade">
               <h2>Upload a dataset to begin</h2>
               <p className="muted">Ask questions in plain English. Every number in the answer is computed by an approved tool and checked against its evidence.</p>
@@ -237,7 +243,7 @@ export default function App() {
           <div ref={endRef} />
         </div>
 
-        <form className="askbar" onSubmit={(e) => { e.preventDefault(); ask(); }}>
+        <form className="askbar" hidden={view === "board"} onSubmit={(e) => { e.preventDefault(); ask(); }}>
           <input
             ref={inputRef}
             value={question}
